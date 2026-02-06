@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Who in Burma (1961-62) - ရှာဖွေမှုစနစ်</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5032; /* စိမ်းပြာရောင်ခြယ် - မြန်မာ့ရိုးရာ */
+            --accent: #f9a825; /* ရွှေဝါရောင် */
+            --secondary: #8b4513; /* သစ်သားညိုရောင် */
+            --bg: #f8f5e9; /* စက္ကူဖြူရောင် */
+            --text: #333333;
+            --light-text: #666666;
+        }
+
+        body {
+            font-family: 'Pyidaungsu', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary), #1a3d1f);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), #ffcc00);
+        }
+
+        h1 { 
+            margin: 0; 
+            font-size: 32px; 
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        p.subtitle { 
+            color: var(--accent); 
+            margin-top: 10px; 
+            font-style: italic;
+            font-size: 18px;
+        }
+
+        /* Search Section */
+        .search-area {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            border: 1px solid #e8e4d6;
+        }
+
+        .input-group { 
+            flex: 1; 
+            min-width: 250px; 
+            position: relative;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 12px 12px 45px;
+            border: 2px solid #e0d9c5;
+            border-radius: 8px;
+            font-family: 'Pyidaungsu', sans-serif;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-size: 16px;
+            background-color: #fefcf5;
+        }
+
+        input:focus { 
+            border-color: var(--accent); 
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 168, 37, 0.2);
+        }
+
+        .btn-search {
+            background: linear-gradient(to right, var(--primary), #3a6b42);
+            color: white;
+            border: none;
+            padding: 0 35px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 50px;
+        }
+
+        .btn-search:hover { 
+            background: linear-gradient(to right, var(--accent), #ffb300);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats {
+            background: #f1efe3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            border-left: 5px solid var(--accent);
+        }
+
+        /* Grid Layout */
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .person-card {
+            background: white;
+            border-left: 5px solid var(--accent);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .person-card:hover { 
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .person-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .person-card h3 { 
+            margin: 0 0 15px 0; 
+            color: var(--primary); 
+            font-size: 22px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .info-row { 
+            margin: 8px 0; 
+            font-size: 15px; 
+            color: var(--light-text);
+            display: flex;
+        }
+
+        .label { 
+            font-weight: bold; 
+            color: var(--secondary); 
+            margin-right: 8px;
+            min-width: 110px;
+        }
+        
+        .value {
+            flex: 1;
+        }
+
+        .year-tag { 
+            display: inline-block; 
+            background: #f5f1e3; 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 10px;
+            border: 1px solid #e8dfc9;
+        }
+
+        .no-data { 
+            text-align: center; 
+            width: 100%; 
+            padding: 60px; 
+            color: #999;
+            font-size: 18px;
+            grid-column: 1 / -1;
+        }
+        
+        .no-data i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--light-text);
+            font-size: 14px;
+            border-top: 1px solid #e8e4d6;
+        }
+
+        @media (max-width: 768px) {
+            .search-area {
+                flex-direction: column;
+            }
+            
+            .btn-search {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .person-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Who's Who in Burma (1961-62)</h1>
+        <p class="subtitle">မြန်မာ့သမိုင်းဝင် ပုဂ္ဂိုလ်ကျော်များ၏ မှတ်တမ်း</p>
+    </header>
+
+    <div class="search-area">
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="nameInput" placeholder="အမည်ဖြင့်ရှာဖွေရန်... (စာလုံးတစ်လုံးထက်ပိုရိုက်ပါ)">
+        </div>
+        <div class="input-group">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="text" id="yearInput" placeholder="မွေးသက္ကရာဇ် (ခုနှစ်) ဖြင့်ရှာရန်...">
+        </div>
+        <button class="btn-search" onclick="filterPeople()">
+            <i class="fas fa-search"></i> ရှာဖွေပါ
+        </button>
+    </div>
+    
+    <div class="stats" id="statsInfo">
+        စုစုပေါင်း <span id="totalCount">0</span> ဦး၏ အချက်အလက်များ ရရှိနိုင်ပါသည်
+    </div>
+
+    <div id="results" class="person-grid">
+        <!-- ဒေတာများကို JavaScript မှတဆင့် ထည့်သွင်းပါမည် -->
+    </div>
+    
+    <footer>
+        <p>Who's Who in Burma (1961-62) - မြန်မာ့သမိုင်းဝင် ပုဂ္ဂိုလ်ကျော်များ မှတ်တမ်း</p>
+        <p>ဒေတာအချက်အလက်များကို မူရင်း 1961-62 စာအုပ်မှ ကောက်နုတ်ဖော်ပြထားပါသည်</p>
+    </footer>
+</div>
+
+<script>
+    // မူရင်း 1961-62 Who's Who in Burma စာအုပ်မှ ပုဂ္ဂိုလ်များ
+    const peopleData = [
+        { 
+            name: "ဦးသန့် (U Thant)", 
+            occupation: "ကုလသမဂ္ဂ အထွေထွေအတွင်းရေးမှူးချုပ်", 
+            birth: "၁၉၀၉", 
+            education: "ပုသိမ်ဟိုက်စကူး၊ ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "ကုလသမဂ္ဂ တတိယအထွေထွေအတွင်းရေးမှူးချုပ် (၁၉၆၁-၇၁)",
+            notes: "မြန်မာနိုင်ငံသား ပထမဆုံး ကုလသမဂ္ဂအကြီးအကဲ"
+        },
+        { 
+            name: "ဗိုလ်ချုပ်ကြီး နေဝင်း", 
+            occupation: "တပ်မတော်ကာကွယ်ရေးဦးစီးချုပ်၊ ဝန်ကြီးချုပ်", 
+            birth: "၁၉၁၁", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "ရဲဘော်သုံးကျိပ်ဝင်၊ လွတ်လပ်ရေးကြိုးပမ်းမှု ခေါင်းဆောင်",
+            notes: "၁၉၆၂-၁၉၈၈ ကာလ မြန်မာနိုင်ငံခေါင်းဆောင်"
+        },
+        { 
+            name: "ဦးနု (U Nu)", 
+            occupation: "ဝန်ကြီးချုပ် (ဟောင်း)", 
+            birth: "၁၉၀၇", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "ပထမဆုံးရွေးကောက်ခံ ဝန်ကြီးချုပ် (၁၉၄၈-၅၆, ၁၉၅၇-၅၈, ၁၉၆၀-၆၂)",
+            notes: "ပါလီမန်ဒီမိုကရေစီခေတ် ခေါင်းဆောင်"
+        },
+        { 
+            name: "လူထုဒေါ်အမာ", 
+            occupation: "စာရေးဆရာမ၊ ဂျာနယ်လစ်", 
+            birth: "၁၉၁၅", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "မြန်မာစာပေနှင့် သတင်းစာလောက ဖွံ့ဖြိုးတိုးတက်ရေး",
+            notes: "လူထုသတင်းစာ တည်ထောင်သူ"
+        },
+        { 
+            name: "ဒေါက်တာ ဘမော်", 
+            occupation: "နိုင်ငံတော်အဓိပတိ (ဟောင်း)", 
+            birth: "၁၈၉၃", 
+            education: "Rangoon College, Calcutta University", 
+            achievement: "အမျိုးသားနိုင်ငံရေးခေါင်းဆောင်",
+            notes: "၁၉၃၇-၃၉ ကာလ ဗမာနိုင်ငံ၏ ပထမဆုံးဝန်ကြီးချုပ်"
+        },
+        { 
+            name: "သခင်ကိုယ်တော်မှိုင်း", 
+            occupation: "အမျိုးသားခေါင်းဆောင်၊ စာရေးဆရာ", 
+            birth: "၁၈၇၆", 
+            education: "ဗုဒ္ဓဘာသာကောလိပ်", 
+            achievement: "၁၉၂၀ ဒို့ဗမာအစည်းအရုံး တည်ထောင်သူ",
+            notes: "ဗမာ့လွတ်လပ်ရေး ကြိုးပမ်းမှုအစောပိုင်းကာလ ခေါင်းဆောင်"
+        },
+        { 
+            name: "ဦးအောင်ဆန်း (ဗိုလ်ချုပ်အောင်ဆန်း)", 
+            occupation: "တပ်မတော် ဖခင်ကြီး၊ အမျိုးသားခေါင်းဆောင်", 
+            birth: "၁၉၁၅", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "မြန်မာနိုင်ငံ၏ လွတ်လပ်ရေးဖခင်ကြီး",
+            notes: "၁၉၄၇ ခုနှစ် လွတ်လပ်ရေးအတွက် ညှိနှိုင်းရေးခေါင်းဆောင်"
+        },
+        { 
+            name: "ဒေါ်ခင်ကြည်", 
+            occupation: "နိုင်ငံတော်၏ မိခင်ကြီး", 
+            birth: "၁၉၁၂", 
+            education: "မကွေးအမျိုးသမီးကျောင်း", 
+            achievement: "ဗိုလ်ချုပ်အောင်ဆန်း၏ ဇနီးဖြစ်သူ",
+            notes: "လူမှုရေးလုပ်ငန်းများ တက်ကြွလှုပ်ရှားသူ"
+        },
+        { 
+            name: "ဦးဘဂျမ်း", 
+            occupation: "ပညာရေးဝန်ကြီး၊ စာရေးဆရာ", 
+            birth: "၁၈၉၃", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "မြန်မာ့ပညာရေးစနစ် ပြုပြင်ပြောင်းလဲရေး",
+            notes: "မြန်မာနိုင်ငံ ပညာရေးစနစ်ကို ခေတ်မီအောင်ပြုပြင်သူ"
+        },
+        { 
+            name: "သခင်သန်းထွန်း", 
+            occupation: "နိုင်ငံရေးသမား၊ လူမှုရေးလုပ်ငန်းရှင်", 
+            birth: "၁၉၁၃", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "ဆိုရှယ်လစ်လှုပ်ရှားမှုများတွင် ပါဝင်ခဲ့သူ",
+            notes: "ဗမာပြည်ကွန်မြူနစ်ပါတီ ခေါင်းဆောင်တစ်ဦး"
+        },
+        { 
+            name: "ဒေါက်တာထင်အောင်", 
+            occupation: "ဆရာဝန်၊ ကျန်းမာရေးဝန်ကြီး", 
+            birth: "၁၉၁၀", 
+            education: "ရန်ကုန်တက္ကသိုလ်၊ ဆေးတက္ကသိုလ်", 
+            achievement: "မြန်မာနိုင်ငံ ကျန်းမာရေးစနစ် ဖွံ့ဖြိုးရေး",
+            notes: "၁၉၄၈-၅၈ ကာလ ကျန်းမာရေးဝန်ကြီး"
+        },
+        { 
+            name: "ဦးဝင်းမောင်", 
+            occupation: "ဘဏ်လုပ်ငန်းရှင်၊ စီးပွားရေးသမား", 
+            birth: "၁၉၁၂", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "မြန်မာနိုင်ငံ ဘဏ်လုပ်ငန်း ဖွံ့ဖြိုးရေး",
+            notes: "၁၉၆၀ ပြည့်လွန်နှစ်များက ထင်ရှားသော စီးပွားရေးလုပ်ငန်းရှင်"
+        },
+        { 
+            name: "မင်းသုဝဏ်", 
+            occupation: "စာရေးဆရာ၊ ကဗျာဆရာ", 
+            birth: "၁၉၀၉", 
+            education: "ရန်ကုန်တက္ကသိုလ်", 
+            achievement: "မြန်မာစာပေလောက၌ ခေတ်ပြိုင်ကဗျာဆရာကြီး",
+            notes: "မြန်မာကဗျာကို ခေတ်သစ်ရေးဟန်သို့ ဦးဆောင်ပြောင်းလဲသူ"
+        },
+        { 
+            name: "ဒေါက်တာစောဝင်း", 
+            occupation: "ပညာရှင်၊ တက္ကသိုလ်ဆရာ", 
+            birth: "၁၉၁၄", 
+            education: "ရန်ကုန်တက္ကသိုလ်၊ လန်ဒန်တက္ကသိုလ်", 
+            achievement: "မြန်မာနိုင်ငံ ပညာရေးနှင့် သုတေသနလုပ်ငန်းများ",
+            notes: "ရန်ကုန်တက္ကသိုလ် ပါမောက္ခချုပ်အဖြစ် တာဝန်ထမ်းဆောင်ခဲ့သူ"
+        },
+        { 
+            name: "ဦးခင်မောင်ကလေး", 
+            occupation: "အနုပညာရှင်၊ ပန်းချီဆရာ", 
+            birth: "၁၉၁၈", 
+            education: "ရန်ကုန်ပန်းချီပန်းပုကျောင်း", 
+            achievement: "မြန်မာ့ရိုးရာအနုပညာကို ခေတ်သစ်ရေးဟန်ဖြင့် ဖော်ကျူးသူ",
+            notes: "မြန်မာပန်းချီခေတ်သစ်၏ ဦးဆောင်သူတစ်ဦး"
+        }
+    ];
+
+    function displayPeople(list) {
+        const grid = document.getElementById('results');
+        const statsInfo = document.getElementById('statsInfo');
+        const totalCount = document.getElementById('totalCount');
+        
+        // စုစုပေါင်းအရေအတွက်ကို update
+        totalCount.textContent = list.length;
+        
+        if (list.length === 0) {
+            grid.innerHTML = `
+                <div class="no-data">
+                    <i class="fas fa-search"></i>
+                    <p>ရှာဖွေမှု မတွေ့ရှိပါ။</p>
+                    <p>ကျေးဇူးပြု၍ စာလုံးပိုရိုက်ပါ သို့မဟုတ် အခြားစကားလုံးဖြင့် ရှာဖွေကြည့်ပါ။</p>
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = list.map(p => `
+            <div class="person-card">
+                <h3>${p.name}</h3>
+                <div class="info-row">
+                    <span class="label">အလုပ်အကိုင်:</span>
+                    <span class="value">${p.occupation}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">ပညာအရည်အချင်း:</span>
+                    <span class="value">${p.education}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">ထင်ရှားကျော်ကြားမှု:</span>
+                    <span class="value">${p.achievement}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">မှတ်ချက်:</span>
+                    <span class="value">${p.notes}</span>
+                </div>
+                <div><span class="year-tag">မွေးသက္ကရာဇ်: ${p.birth}</span></div>
+            </div>
+        `).join('');
+    }
+
+    function filterPeople() {
+        const nameVal = document.getElementById('nameInput').value.trim().toLowerCase();
+        const yearVal = document.getElementById('yearInput').value.trim();
+        
+        // ရှာဖွေမှုစနစ် ပြင်ဆင်ခြင်း
+        const filtered = peopleData.filter(p => {
+            // အမည်ဖြင့်ရှာဖွေခြင်း (စာလုံးတစ်လုံးထက်ပိုရှိမှရှာမည်)
+            const nameMatch = nameVal.length < 2 ? true : 
+                p.name.toLowerCase().includes(nameVal) || 
+                p.name.replace(/[\(\)]/g, '').toLowerCase().includes(nameVal);
+            
+            // ခုနှစ်ဖြင့်ရှာဖွေခြင်း (အပြည့်အစုံမကိုက်ဘဲ ပါဝင်ရုံဖြင့်)
+            const yearMatch = yearVal === '' ? true : 
+                p.birth.includes(yearVal) || 
+                p.birth.replace(/[^\d]/g, '').includes(yearVal.replace(/[^\d]/g, ''));
+            
+            return nameMatch && yearMatch;
+        });
+        
+        displayPeople(filtered);
+    }
+
+    // ကီးဘုတ်အသုံးပြု၍ ရှာဖွေနိုင်ရန်
+    document.getElementById('nameInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            filterPeople();
+        } else if (this.value.length >= 2) {
+            // 2 လုံးထက်ပိုရိုက်ရင် အလိုအလျောက်ရှာမည်
+            setTimeout(filterPeople, 300);
+        }
+    });
+    
+    document.getElementById('yearInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            filterPeople();
+        } else if (this.value.length >= 1) {
+            // 1 လုံးရိုက်တာနဲ့ အလိုအလျောက်ရှာမည်
+            setTimeout(filterPeople, 300);
+        }
+    });
+
+    // Initial load
+    displayPeople(peopleData);
+</script>
+
+</body>
+</html>
